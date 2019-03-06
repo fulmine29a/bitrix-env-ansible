@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+mkdir /tmp/php_sessions
+mkdir /tmp/php_sessions/www
+chown -R bitrix:bitrix /tmp/php_sessions
+
+mkdir /tmp/php_uploads
+mkdir /tmp/php_uploads/www
+chown -R bitrix:bitrix /tmp/php_uploads
+
+touch /var/lock/subsys/local

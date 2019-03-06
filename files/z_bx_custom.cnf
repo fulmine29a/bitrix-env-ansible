@@ -1,0 +1,4 @@
+# place custom mysql setting here
+
+[mysqld]
+default-time-zone = "Europe/Moscow"

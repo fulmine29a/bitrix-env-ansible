@@ -1,0 +1,38 @@
+- hosts: webserver
+  tasks:
+    - name: create bitrix group
+      group:
+        name: bitrix
+        gid: 1000
+
+    - name: create bitrix user
+      user:
+        name: bitrix
+        uid: 1000
+        group: 1000
+
+    - name: Download install script
+      get_url:
+        url: http://repos.1c-bitrix.ru/yum/bitrix-env.sh
+        dest: /root/bitrix-env.sh
+        mode: 0700
+
+    - name: run install script
+      shell: /root/bitrix-env.sh
+
+    - name: copy rc.local
+      copy: src=files/rc.local dest=/etc/rc.d/rc.local mode=0740
+
+    - name: enable curl
+      shell: mv -f /etc/php.d/20-curl.ini.disabled /etc/php.d/20-curl.ini
+
+    - name: restart httpd
+      service: name=httpd state=restarted
+
+- hosts: mysqld
+  tasks:
+    - name: copy mysqld config
+      copy: src=files/z_bx_custom.cnf dest=/etc/mysql/conf.d/ mode=0640
+
+    - name: restart mysqld
+      service: name=mysqld state=restarted

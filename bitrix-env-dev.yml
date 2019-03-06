@@ -1,0 +1,14 @@
+- hosts: webserver
+  gather_facts: False
+  tasks:
+    - name: copy custom php-config
+      copy: src=dev/z_dev_php.ini dest=/etc/php.d/ mode=0640
+
+    - name: restart httpd
+      service: name=httpd state=restarted
+
+    - name: create mysql remote user (1/2)
+      copy: src=dev/user.sql dest=/root/
+
+    - name: create mysql remote user (2/2)
+      shell: mysql < /root/user.sql
