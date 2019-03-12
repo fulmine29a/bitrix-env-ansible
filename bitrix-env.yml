@@ -11,6 +11,12 @@
         uid: 1000
         group: 1000
 
+    - name: fix bitrix home rights (on docker)
+      file:
+        path: /home/bitrix
+        group: bitrix
+        owner: bitrix
+
     - name: Download install script
       get_url:
         url: http://repos.1c-bitrix.ru/yum/bitrix-env.sh

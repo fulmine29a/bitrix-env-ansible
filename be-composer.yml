@@ -1,0 +1,12 @@
+- hosts: webserver
+  tasks:
+    - name: enable php-phar
+      shell: mv -f /etc/php.d/20-phar.ini.disabled /etc/php.d/20-phar.ini
+
+    - name: install composer
+      yum:
+        name: composer
+        state: latest
+
+    - name: restart httpd
+      service: name=httpd state=restarted
