@@ -1,0 +1,9 @@
+- hosts: webserver
+  tasks:
+    - name: install php soap
+      yum:
+        name: php-soap
+        state: latest
+
+    - name: restart httpd
+      service: name=httpd state=restarted
