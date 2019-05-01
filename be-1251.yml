@@ -1,10 +1,8 @@
 - hosts: webserver
   gather_facts: False
   tasks:
-    - name: install php soap
-      yum:
-        name: php-soap
-        state: latest
+    - name: copy custom php-config
+      copy: src=dev/z_1251_php.ini dest=/etc/php.d/ mode=0640
 
     - name: restart httpd
       service: name=httpd state=restarted

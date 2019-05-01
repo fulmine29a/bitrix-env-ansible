@@ -1,4 +1,5 @@
 - hosts: webserver
+  gather_facts: False
   tasks:
     - name: enable php-phar
       shell: mv -f /etc/php.d/20-phar.ini.disabled /etc/php.d/20-phar.ini
