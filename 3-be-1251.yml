@@ -2,7 +2,7 @@
   gather_facts: False
   tasks:
     - name: copy custom php-config
-      copy: src=dev/z_1251_php.ini dest=/etc/php.d/ mode=0640
+      copy: src=files/z_1251_php.ini dest=/etc/php.d/ mode=0640
 
     - name: restart httpd
       service: name=httpd state=restarted
